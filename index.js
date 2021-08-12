@@ -12,10 +12,12 @@ let url;
 
 if (isWin) {
   url = "https://www.dropbox.com/s/3vnspi28a78xh55/dappstarter.exe?dl=1";
-} else if (isLinux) {
-  url = "https://www.dropbox.com/s/7bl7f8br6e1eanv/dappstarter?dl=1";
 } else if (isMac) {
   url = "https://www.dropbox.com/s/hbjrp2o15ffw57s/dappstarter?dl=1";
+} else if (isLinux) {
+  url = "https://www.dropbox.com/s/7bl7f8br6e1eanv/dappstarter?dl=1";
+} else {
+  throw new Error(`Operating system not supported. ${platform()}`);
 }
 
 function getUrl(url, resolve, reject) {
