@@ -37,17 +37,15 @@ function get(url, resolve, reject) {
 async function getData(url) {
   return new Promise((resolve, reject) => get(url, resolve, reject));
 }
-
-getData(url).then((r) => {
-  const fileRoot = join(__dirname, "node_modules", ".bin");
-  fs.mkdir(fileRoot, { recursive: true }, () => {
-    const fileStream = fs.createWriteStream(
-      join(fileRoot, isWin ? "dappstarter.exe" : "dappstarter"),
-      {
+const fileRoot = join(__dirname, "node_modules", ".bin");
+const filePath = join(fileRoot, isWin ? "dappstarter.exe" : "dappstarter");
+if (!fs.existsSync(filePath)) {
+  getData(url).then((r) => {
+    fs.mkdir(fileRoot, { recursive: true }, () => {
+      const fileStream = fs.createWriteStream(filePath, {
         mode: 0o777,
-      }
-    );
-    return r.pipe(fileStream);
+      });
+      return r.pipe(fileStream);
+    });
   });
-});
-
+}
