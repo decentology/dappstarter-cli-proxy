@@ -47,7 +47,7 @@ stat(filePath, (err, stats) => {
     getData(url).then((r) => {
       mkdir(fileRoot, { recursive: true }, () => {
         const fileStream = createWriteStream(filePath, {
-          mode: 0o777,
+          mode: 0o700,
         });
         return r.pipe(fileStream);
       });
