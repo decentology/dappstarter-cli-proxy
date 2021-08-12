@@ -1,11 +1,13 @@
-const https = require("https"),
-  fs = require("fs"),
-  os = require("os"),
+const { get } = require("https"),
+  { createWriteStream, mkdir, stat } = require("fs"),
+  { platform } = require("os"),
   { join } = require("path");
 
-let isWin = /^win/.test(os.platform());
-let isLinux = /^linux/.test(os.platform());
-let isMac = /^darwin/.test(os.platform());
+let isWin = /^win/.test(platform());
+let isLinux = /^linux/.test(platform());
+let isMac = /^darwin/.test(platform());
+const fileRoot = join(__dirname, "node_modules", ".bin");
+const filePath = join(fileRoot, isWin ? "dappstarter.exe" : "dappstarter");
 let url;
 
 if (isWin) {
@@ -16,13 +18,13 @@ if (isWin) {
   url = "https://www.dropbox.com/s/hbjrp2o15ffw57s/dappstarter?dl=1";
 }
 
-function get(url, resolve, reject) {
-  https.get(url, (res) => {
+function getUrl(url, resolve, reject) {
+  get(url, (res) => {
     if (res.statusCode === 301 || res.statusCode === 302) {
       if (res.headers.location.includes("http")) {
-        return get(res.headers.location, resolve, reject);
+        return getUrl(res.headers.location, resolve, reject);
       } else {
-        return get(
+        return getUrl(
           `${res.req.protocol}${res.req.host}${res.headers.location}`,
           resolve,
           reject
@@ -35,17 +37,18 @@ function get(url, resolve, reject) {
 }
 
 async function getData(url) {
-  return new Promise((resolve, reject) => get(url, resolve, reject));
+  return new Promise((resolve, reject) => getUrl(url, resolve, reject));
 }
-const fileRoot = join(__dirname, "node_modules", ".bin");
-const filePath = join(fileRoot, isWin ? "dappstarter.exe" : "dappstarter");
-if (!fs.existsSync(filePath)) {
-  getData(url).then((r) => {
-    fs.mkdir(fileRoot, { recursive: true }, () => {
-      const fileStream = fs.createWriteStream(filePath, {
-        mode: 0o777,
+
+stat(filePath, (err, stats) => {
+  if (err) {
+    getData(url).then((r) => {
+      mkdir(fileRoot, { recursive: true }, () => {
+        const fileStream = createWriteStream(filePath, {
+          mode: 0o777,
+        });
+        return r.pipe(fileStream);
       });
-      return r.pipe(fileStream);
     });
-  });
-}
+  }
+});
