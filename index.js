@@ -7,7 +7,7 @@ const { get } = require("https"),
 let isWin = /^win/.test(platform());
 let isLinux = /^linux/.test(platform());
 let isMac = /^darwin/.test(platform());
-const fileRoot = join(__dirname, "node_modules", ".bin");
+const fileRoot = join(process.cwd(), "node_modules", ".bin");
 const filePath = join(fileRoot, isWin ? "dappstarter.exe" : "dappstarter");
 let url;
 

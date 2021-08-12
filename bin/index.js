@@ -1,1 +1,2 @@
-require("../../index");
+#!/usr/bin/env node
+require("..");
