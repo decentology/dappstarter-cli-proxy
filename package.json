@@ -3,7 +3,7 @@
   "version": "1.0.0",
   "main": "index.js",
   "bin": {
-    "dappstarter-cli-download": "index.js"
+    "dappstarter-cli-download": "./bin/index.js"
   },
   "license": "MIT",
   "repository": "https://github.com/decentology/dappstarter-cli-download",
