@@ -1,3 +1,4 @@
+#!/usr/bin/env node
 const { get } = require("https"),
   { createWriteStream, mkdir, stat } = require("fs"),
   { platform } = require("os"),
