@@ -7,4 +7,4 @@
 
 # DappStarter Command Line Download Utility
 
-This project is a sub module for the DappStarter. It is used to seamless download an AOT compiled node module to run as a CLI. It is useful to allow developers to get started more quickly without the need to have `node` or do a `npm install`
+This project is a sub module for the DappStarter. It is used to seamless download an AOT compiled node module to run the DappStarter CLI. It is useful to allow developers to get started more quickly without the need to have a specific `node` version installed or do a `npm install`
