@@ -1,7 +1,7 @@
 {
   "name": "@decentology/dappstarter-cli-proxy",
   "description": "This project is a sub module for the DappStarter. It is used to seamless download an AOT compiled node module to run the DappStarter CLI",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "main": "index.js",
   "bin": {
     "dappstarter-cli-download": "bin/index.js"
