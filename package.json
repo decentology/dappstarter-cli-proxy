@@ -4,16 +4,21 @@
   "version": "1.0.0",
   "main": "index.js",
   "bin": {
-    "dappstarter-cli-download": "./bin/index.js"
+    "dappstarter-cli-download": "bin/index.js"
   },
   "license": "MIT",
-  "repository": "https://github.com/decentology/dappstarter-cli-download",
-  "author": {
-    "name": "Jonathan Sheely",
-    "url": "https://github.com/decentology/dappstarter-cli"
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/decentology/dappstarter-cli-download.git"
   },
+  "author": "Jonathan Sheely (https://github.com/decentology/dappstarter-cli)",
   "scripts": {
     "dappstart": "dappstarter create -h",
     "predappstart": "node index.js"
-  }
+  },
+  "bugs": {
+    "url": "https://github.com/decentology/dappstarter-cli-download/issues"
+  },
+  "homepage": "https://github.com/decentology/dappstarter-cli-download#readme",
+  "devDependencies": {}
 }
