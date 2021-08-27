@@ -1,7 +1,7 @@
 {
   "name": "@decentology/dappstarter-cli-proxy",
   "description": "This project is a sub module for the DappStarter. It is used to seamless download an AOT compiled node module to run the DappStarter CLI",
-  "version": "1.0.1",
+  "version": "1.0.2",
   "main": "index.js",
   "bin": {
     "dappstarter-cli-download": "bin/index.js"
@@ -9,15 +9,15 @@
   "license": "MIT",
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/decentology/dappstarter-cli-download.git"
+    "url": "git+https://github.com/decentology/dappstarter-cli-proxy.git"
   },
-  "author": "Jonathan Sheely (https://github.com/decentology/dappstarter-cli)",
+  "author": "Jonathan Sheely",
   "scripts": {
     "dappstart": "dappstarter create -h",
     "predappstart": "node index.js"
   },
   "bugs": {
-    "url": "https://github.com/decentology/dappstarter-cli-download/issues"
+    "url": "https://github.com/decentology/dappstarter-cli-proxy/issues"
   },
-  "homepage": "https://github.com/decentology/dappstarter-cli-download#readme"
+  "homepage": "https://github.com/decentology/dappstarter-cli-proxy#readme"
 }
