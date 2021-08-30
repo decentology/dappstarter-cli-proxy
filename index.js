@@ -25,17 +25,14 @@ async function getLatestRelease() {
     );
   }
   const latestRelease = json[0];
-  for (const asset of latestRelease.assets) {
-    if (isWin && asset.browser_download_url.includes("win")) {
-      return asset.browser_download_url;
-    } else if (isMac && asset.browser_download_url.includes("macos")) {
-      return asset.browser_download_url;
-    } else if (isLinux && asset.browser_download_url.includes("linux")) {
-      return asset.browser_download_url;
-    } else {
-      throw new Error(`Operating system not supported. ${platform()}`);
-    }
+  const downloadUrls = latestRelease.assets.map((x) => x.browser_download_url);
+  const downloadUrl = downloadUrls.find((x) =>
+    x.includes(isWin ? "win" : isLinux ? "linux" : "mac")
+  );
+  if (downloadUrl == null) {
+    throw new Error(`Operating system not supported. ${platform()}`);
   }
+  return downloadUrl;
 }
 
 (async () => {
