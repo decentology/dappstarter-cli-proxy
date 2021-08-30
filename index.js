@@ -27,7 +27,7 @@ async function getLatestRelease() {
   const latestRelease = json[0];
   const downloadUrls = latestRelease.assets.map((x) => x.browser_download_url);
   const downloadUrl = downloadUrls.find((x) =>
-    x.includes(isWin ? "win" : isLinux ? "linux" : "mac")
+    x.includes(isWin ? "win" : isMac ? "mac" : isLinux ? "linux" : null)
   );
   if (downloadUrl == null) {
     throw new Error(`Operating system not supported. ${platform()}`);
